@@ -4,9 +4,10 @@ import { IMAGE_BASE_URL } from '../utils/apiUrls'
 import { Link } from 'react-router-dom';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { MovieContext } from '../context/MovieContext';
+import { useMovies } from '../hooks/useMovies';
 
 function MovieCard({ movie,movieType}) {
-    const {state, dispatch,handleAddToFavourite} = useContext(MovieContext);
+    const {state,handleAddToFavourite} = useMovies();
     const handleFavouriteToggle = (e) => {
         e.stopPropagation();
         e.preventDefault();

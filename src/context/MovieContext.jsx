@@ -5,14 +5,6 @@ export const MovieContext = createContext();
 
 export const MovieProvider = ({ children }) => {
     const [state, dispatch] = useReducer(movieReducer, movieInitialState);
-    const handleAddToFavourite = (id) => {
-        const isFavourite = state.favourites.some(movie => movie.id === id);
-        console.log("Tests",isFavourite,id);
-        isFavourite ?
-            dispatch({ type: "REMOVE_FROM_FAVOURITES", payload: id }) :
-            dispatch({ type: "ADD_TO_FAVOURITES", payload: id })
-
-    }
 
     useEffect(()=>{
       localStorage.setItem("favourites", JSON.stringify(state.favourites))
@@ -21,7 +13,7 @@ export const MovieProvider = ({ children }) => {
 
 
     return (
-        <MovieContext.Provider value={{ state, dispatch, handleAddToFavourite }}>
+        <MovieContext.Provider value={{ state, dispatch }}>
             {children}
         </MovieContext.Provider>
     )
