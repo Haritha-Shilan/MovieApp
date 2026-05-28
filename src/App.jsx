@@ -7,36 +7,10 @@ import Home from './pages/Home';
 import Favorites from './pages/Favorites';
 import AppNavbar from './components/AppNavbar';
 import { MovieContext } from './context/MovieContext';
+import { useMovies } from './hooks/useMovies';
 
 function App() {
-
-  const {state, dispatch} = useContext(MovieContext);
-
-  const handleSearchText = async (text) => {
-    dispatch({ type: "SET_SEARCH_TEXT", payload: text })
-    dispatch({ type: "FETCH_START" })
-    try {
-
-      const resultMovies = await searchMovieByName(text);
-      dispatch({ type: "FETCH_SUCCESS", payload: resultMovies })
-
-    }
-    catch (error) {
-      dispatch({ type: "FETCH_FAILURE", payload: error.message })
-    }
-  }
-
-  const loadPopularMovies = async () => {
-    dispatch({ type: "FETCH_START" })
-    try {
-      const popularMovies = await getPopularMovies();
-      dispatch({ type: "FETCH_SUCCESS", payload: popularMovies })
-    }
-    catch (error) {
-
-      dispatch({ type: "FETCH_FAILURE", payload: error.message })
-    }
-  }
+  const { loadPopularMovies } = useMovies();
 
   useEffect(() => {
     loadPopularMovies();

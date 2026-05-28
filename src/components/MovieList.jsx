@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import MovieCard from './MovieCard'
 import { Col, Container, Row } from 'react-bootstrap'
 import { MovieContext } from '../context/MovieContext';
+import { useMovies } from '../hooks/useMovies';
 
 function MovieList({movieType}) {
-    const {state} = useContext(MovieContext);
+    const {state} = useMovies();
     const movies = movieType ==="Favourite Movies"?state.favourites:state.movies;
     return (
         <Container>

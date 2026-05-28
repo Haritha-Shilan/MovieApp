@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, {  useState } from 'react'
 import { Button, Container, Form, InputGroup } from 'react-bootstrap'
 import { FaSearch } from 'react-icons/fa';
 import { MovieContext } from '../context/MovieContext';
+import { useMovies } from '../hooks/useMovies';
 
 function SearchBar() {
-const {onSearch}=useContext(MovieContext);
+  const {handleSearchText } = useMovies();
 const[text,setText]=useState('');
 
 const handleSearch=()=>{
     if(text.trim()==='') return;
-    onSearch(text);
+    handleSearchText(text);
 }
 
   return (
