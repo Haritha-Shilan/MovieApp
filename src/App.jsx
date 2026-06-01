@@ -1,14 +1,10 @@
-import React, { useContext, useEffect, useReducer } from 'react'
-import { getPopularMovies, searchMovieByName } from './services/movieService';
-import { movieReducer, movieInitialState } from './reducers/movieReducer';
-import { Link, Route, Routes } from 'react-router-dom';
-import MovieDetails from './pages/MovieDetails';
-import Home from './pages/Home';
-import Favorites from './pages/Favorites';
-import AppNavbar from './components/AppNavbar';
-import { MovieContext } from './context/MovieContext';
+import { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { useMovies } from './hooks/useMovies';
 import MainLayout from './layouts/MainLayout';
+import Favorites from './pages/Favorites';
+import Home from './pages/Home';
+import MovieDetails from './pages/MovieDetails';
 
 function App() {
   const { loadPopularMovies } = useMovies();
@@ -21,15 +17,14 @@ function App() {
   return (
 
     <>
-      {/* <AppNavbar/> */}
       <div >
         <Routes >
           <Route element={<MainLayout />}>
-            <Route path="/" element={
+            <Route index element={
               <Home />
             } />
-            <Route path='/movie/:id' element={<MovieDetails />} />
-            <Route path='/favorites' element={<Favorites />} />
+            <Route path='movie/:id' element={<MovieDetails />} />
+            <Route path='favorites' element={<Favorites />} />
           </Route>
         </Routes>
       </div>
