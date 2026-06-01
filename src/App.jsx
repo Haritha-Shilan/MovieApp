@@ -8,6 +8,7 @@ import Favorites from './pages/Favorites';
 import AppNavbar from './components/AppNavbar';
 import { MovieContext } from './context/MovieContext';
 import { useMovies } from './hooks/useMovies';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   const { loadPopularMovies } = useMovies();
@@ -20,14 +21,16 @@ function App() {
   return (
 
     <>
-     <AppNavbar/>
+      {/* <AppNavbar/> */}
       <div >
-        <Routes>
-          <Route path="/" element={
-            <Home />
-          } />
-          <Route path='/movie/:id' element={<MovieDetails />} />
-          <Route path='/favorites' element={<Favorites  />} />
+        <Routes >
+          <Route element={<MainLayout />}>
+            <Route path="/" element={
+              <Home />
+            } />
+            <Route path='/movie/:id' element={<MovieDetails />} />
+            <Route path='/favorites' element={<Favorites />} />
+          </Route>
         </Routes>
       </div>
     </>
