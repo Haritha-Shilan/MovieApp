@@ -5,6 +5,7 @@ import MainLayout from './layouts/MainLayout';
 import Favorites from './pages/Favorites';
 import Home from './pages/Home';
 import MovieDetails from './pages/MovieDetails';
+import NotFound from './pages/NotFound';
 
 function App() {
   const { loadPopularMovies } = useMovies();
@@ -25,7 +26,9 @@ function App() {
             } />
             <Route path='movie/:id' element={<MovieDetails />} />
             <Route path='favorites' element={<Favorites />} />
+             <Route path="*" element={<NotFound/>}/>
           </Route>
+          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </div>
     </>
