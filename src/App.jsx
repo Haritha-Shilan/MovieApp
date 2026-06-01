@@ -6,6 +6,8 @@ import Favorites from './pages/Favorites';
 import Home from './pages/Home';
 import MovieDetails from './pages/MovieDetails';
 import NotFound from './pages/NotFound';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/Login';
 
 function App() {
   const { loadPopularMovies } = useMovies();
@@ -25,10 +27,12 @@ function App() {
               <Home />
             } />
             <Route path='movie/:id' element={<MovieDetails />} />
-            <Route path='favorites' element={<Favorites />} />
-             <Route path="*" element={<NotFound/>}/>
+            <Route element={<ProtectedRoute/>}>
+              <Route path='favorites' element={<Favorites />} />
+            </Route>
+            <Route path="login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound/>}/>
         </Routes>
       </div>
     </>
