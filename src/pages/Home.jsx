@@ -1,7 +1,5 @@
-import React, { useContext } from 'react'
-import MovieList from '../components/MovieList'
-import SearchBar from '../components/SearchBar'
-import { MovieContext } from '../context/MovieContext';
+import MovieList from '../components/MovieList';
+import SearchBar from '../components/SearchBar';
 function Home() {
     return (
         <>

@@ -1,17 +1,14 @@
-import React, { useContext, useEffect } from 'react'
-import { Card, Col } from 'react-bootstrap'
-import { IMAGE_BASE_URL } from '../utils/apiUrls'
-import { Link } from 'react-router-dom';
+import { Card, Col } from 'react-bootstrap';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
-import { MovieContext } from '../context/MovieContext';
+import { Link } from 'react-router-dom';
 import { useMovies } from '../hooks/useMovies';
-
+import { IMAGE_BASE_URL } from '../utils/apiUrls';
 function MovieCard({ movie,movieType}) {
     const {state,handleAddToFavourite} = useMovies();
+    
     const handleFavouriteToggle = (e) => {
         e.stopPropagation();
         e.preventDefault();
-
         handleAddToFavourite(movie.id);
     }
 
