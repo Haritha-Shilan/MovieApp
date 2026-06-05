@@ -1,14 +1,16 @@
-import { useContext } from "react"
-import { AuthContext } from "../context/AuthContext"
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "../features/AuthSlice";
 
-function Login() {
-    const {isAuthenticated,login,logout}= useContext(AuthContext);
-  return (
+function Login() {  
+  const dispatch=useDispatch();
+  const isAuthenticated=useSelector(state=>state.auth.isAuthenticated);
+  console.log(isAuthenticated);
+    return (
     <>
     {
       isAuthenticated?
-      <button onClick={()=>logout()}>Logout</button> :
-      <button onClick={()=>login()}>LogIn</button>
+      <button onClick={()=>dispatch(logout())}>Logout</button> :
+      <button onClick={()=>dispatch(login())}>LogIn</button>
     }
     </>
   )
