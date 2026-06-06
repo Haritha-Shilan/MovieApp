@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useMovies } from './hooks/useMovies';
 import MainLayout from './layouts/MainLayout';
 import Favorites from './pages/Favorites';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import MovieDetails from './pages/MovieDetails';
-import NotFound from './pages/NotFound';
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/Login'));
+const MovieDetails = lazy(() => import('./pages/MovieDetails'));
+const NotFound = lazy(import('./pages/NotFound'));
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
 
     <>
       <div >
+      <Suspense fallback={<div>Loading Page...</div>}>
         <Routes >
           <Route element={<MainLayout />}>
             <Route index element={
@@ -45,6 +46,7 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+        </Suspense>
       </div>
     </>
 
